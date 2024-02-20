@@ -1,0 +1,44 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "image": "https://i.ibb.co/nfDWQrd/img-4.jpg",
+      "name": "Product 1",
+      "type": "shoes",
+      "price": 499.99,
+      "rating": 4.5,
+      "brand": "Brand A",
+      "details": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod."
+    },
+    {
+      "id": 2,
+      "image": "https://i.ibb.co/DGmssYc/img-4.jpg",
+      "name": "Product 2",
+      "type": "pent",
+      "price": 29.99,
+      "rating": 4.0,
+      "brand": "Brand B",
+      "details": "Nulla nec massa metus. Fusce et malesuada enim, vel malesuada augue."
+    },
+    {
+      "id": 3,
+      "image": "https://i.ibb.co/W2YW305/img-2.jpg",
+      "name": "Product 3",
+      "type": "shirt",
+      "price": 149.99,
+      "rating": 3.8,
+      "brand": "Brand C",
+      "details": "Donec venenatis, nisl vel cursus rhoncus, nunc mauris commodo."
+    },
+    {
+      "id": 4,
+      "image": "https://i.ibb.co/R2h0mwZ/6224346715-6-1-1.jpg",
+      "name": "Product 4",
+      "type": "t-shirt",
+      "price": 9.99,
+      "rating": 4.2,
+      "brand": "Brand D",
+      "details": "Sed nec justo sit amet ipsum congue vehicula. Mauris nec tortor nec."
+    }
+  ]
+}
