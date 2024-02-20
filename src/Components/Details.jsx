@@ -1,20 +1,8 @@
-import { useEffect, useState } from "react";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData} from "react-router-dom";
 
 const Details = () => {
-  const [products, setProducts] = useState({});
-  const id = useParams();
-  const productId = parseInt(id.id);
-
-  const allProducts = useLoaderData();
-  useEffect(() => {
-    const productsDetails = allProducts.products.find(
-      (product) => product.id === productId
-    );
-    setProducts(productsDetails);
-  }, [productId, allProducts]);
-
-  const { image, name, type, price, rating, brand, details } = products;
+  const detailsProduct = useLoaderData();
+  const { image, name, type, price, rating, brand, details } = detailsProduct;
 
   return (
     <div className="md:flex flex-row px-5 md:p-0 items-center my-20 justify-between gap-5">

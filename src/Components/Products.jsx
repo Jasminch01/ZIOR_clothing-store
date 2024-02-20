@@ -7,8 +7,8 @@ const Products = () => {
       <div>
         <p className="text-2xl font-bold mb-5">New Products</p>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
-          {allProducts.products.slice(0, 4).map((product, idx) => (
-            <Link to={`/details/${product.id}`} key={idx}>
+          {allProducts.slice(0, 4).map((product, idx) => (
+            <Link to={`/details/${product._id}`} key={idx}>
               <div className="flex flex-col">
                 <figure>
                   <img
@@ -35,8 +35,8 @@ const Products = () => {
       <div className="my-10">
         <p className="text-2xl font-bold mb-5 ">Fetured Products</p>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
-          {allProducts.products.map((product, idx) => (
-            <Link to={`/details/${product.id}`} key={idx}>
+          {allProducts.map((product, idx) => (
+            <Link to={`/details/${product._id}`} key={idx}>
               <div className="flex flex-col">
                 <figure>
                   <img
