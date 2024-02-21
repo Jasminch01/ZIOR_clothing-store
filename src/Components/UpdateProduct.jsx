@@ -1,9 +1,10 @@
 import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 
-const AddProduct = () => {
+const UpdateProduct = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const productUpdate = useLoaderData({});
 
   const handleSumbit = (e) => {
     e.preventDefault();
@@ -24,30 +25,25 @@ const AddProduct = () => {
       price,
       brand,
       details,
-      rating
-    }
+      rating,
+    };
 
-    axios.post(`http://localhost:5000/addProduct`, product)
-    .then(res => {
-      console.log(res.data)
-      if (res.data.insertedId) {
+    axios.put(`http://localhost:5000/updateProduct/${productUpdate._id}`, product).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
         navigate(location?.state ? location.state : "/");
         formA.reset();
-        alert('product aded success')
+        alert("product aded success");
       }
-    })
-    
-  }
-
+    });
+  };
 
   return (
     <div className="h-screen">
       <div className="hero min-h-screen ">
         <div>
           <div className="my-10">
-            <p className="text-3xl text-center font-bold ">
-              Add Product
-            </p>
+            <p className="text-3xl text-center font-bold ">Add Product</p>
           </div>
           <div className="w-full shadow-2xl lg:w-96">
             <form className="card-body" onSubmit={handleSumbit}>
@@ -58,6 +54,7 @@ const AddProduct = () => {
                 <input
                   type="text"
                   name="name"
+                  defaultValue={productUpdate.name}
                   placeholder="Product Name"
                   className="input input-bordered"
                   required
@@ -70,6 +67,7 @@ const AddProduct = () => {
                 <input
                   type="text"
                   name="type"
+                  defaultValue={productUpdate.type}
                   placeholder="Product Type"
                   className="input input-bordered"
                   required
@@ -82,6 +80,7 @@ const AddProduct = () => {
                 <input
                   type="text"
                   name="photo"
+                  defaultValue={productUpdate.imge}
                   placeholder="Photo url"
                   className="input input-bordered"
                 />
@@ -93,6 +92,7 @@ const AddProduct = () => {
                 <input
                   type="number"
                   name="price"
+                  defaultValue={productUpdate.price}
                   placeholder="Price"
                   className="input input-bordered"
                   required
@@ -103,6 +103,7 @@ const AddProduct = () => {
                   <span className="label-text ">Brand Name</span>
                 </label>
                 <input
+                  defaultValue={productUpdate.brand}
                   type="text"
                   name="brand"
                   placeholder="Brand"
@@ -117,6 +118,7 @@ const AddProduct = () => {
                 <input
                   type="text"
                   name="rating"
+                  defaultValue={productUpdate.rating}
                   placeholder="Rating"
                   className="input input-bordered"
                   required
@@ -129,6 +131,7 @@ const AddProduct = () => {
                 <textarea
                   type="text"
                   name="discription"
+                  defaultValue={productUpdate.details}
                   placeholder="Discription"
                   className="input input-bordered"
                   required
@@ -136,7 +139,7 @@ const AddProduct = () => {
               </div>
               <div className="form-control mt-6">
                 <button className="p-3 bg-green-500 rounded-lg text-white uppercase">
-                  Add
+                  Update
                 </button>
               </div>
             </form>
@@ -147,4 +150,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default UpdateProduct;
