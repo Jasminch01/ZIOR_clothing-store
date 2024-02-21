@@ -4,7 +4,7 @@ const Banner = () => {
       className="hero h-96 bg-cover bg-center flex items-center justify-start relative"
       style={{
         backgroundImage:
-          "url(https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg)",
+          "url(https://linea-01.myshopify.com/cdn/shop/files/slide-img1_a004d307-46d0-479d-9906-9c651c53b6ad.jpg?v=1613617697)",
       }}
     >
       <div className="text-left absolute inset-0 flex items-center justify-start px-5">
