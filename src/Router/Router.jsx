@@ -6,6 +6,8 @@ import ErrorPage from "../Pages/ErrorPage";
 import Details from "../Components/Details";
 import MyCart from "../Pages/MyCart";
 import UpdateProduct from "../Components/UpdateProduct";
+import PrivetRoute from "./PrivetRoute";
+import Login from "../Pages/Login";
 
 const Router = createBrowserRouter([
   {
@@ -20,16 +22,16 @@ const Router = createBrowserRouter([
       },
       {
         path: "/add-product",
-        element: <AddProduct />,
+        element: <PrivetRoute> <AddProduct /></PrivetRoute>,
       },
       {
         path: "details/:id",
-        element: <Details />,
+        element: <PrivetRoute>  <Details /> </PrivetRoute>,
         loader: ({params}) => fetch(`http://localhost:5000/products/${params.id}`),
       },
       {
         path : "/mycart",
-        element : <MyCart/>,
+        element : <PrivetRoute> <MyCart/> </PrivetRoute>,
         loader : () => fetch(`http://localhost:5000/myCart`)
 
       },
@@ -37,9 +39,13 @@ const Router = createBrowserRouter([
         path : 'updateProduct/:id',
         element : <UpdateProduct/>,
         loader : ({params}) => fetch(`http://localhost:5000/products/${params.id}`)
-      }
+      },
     ],
   },
+  {
+    path : 'login',
+    element : <Login/>
+  }
 ]);
 
 export default Router;

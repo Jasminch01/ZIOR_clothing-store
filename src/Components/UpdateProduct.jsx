@@ -80,7 +80,7 @@ const UpdateProduct = () => {
                 <input
                   type="text"
                   name="photo"
-                  defaultValue={productUpdate.imge}
+                  defaultValue={productUpdate.image}
                   placeholder="Photo url"
                   className="input input-bordered"
                 />
