@@ -1,8 +1,46 @@
+import axios from "axios";
 import { useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import {
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
+import auth from "../../config/firebase.config";
 
 const Navbar = () => {
-  const [cartCount, setCartCount] = useState(null)
+  const [cartCount, setCartCount] = useState(null);
+  const [user, setUser] = useState({});
+  const googleProvider = new GoogleAuthProvider();
+
+  //current user state
+  useEffect(() => {
+    axios.get("http://localhost:5000/mycart").then((res) => {
+      setCartCount(res.data.length);
+    });
+  }, []);
+
+  useEffect(() => {
+    const unSubsCribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => {
+      unSubsCribe();
+    };
+  }, [user]);
+
+  //login user
+  const signInGoogle = () => {
+    return signInWithPopup(auth, googleProvider);
+  };
+
+  //logout user
+  const logOut = () => {
+    return signOut(auth);
+  };
+
   const navItems = (
     <>
       <li>
@@ -76,9 +114,11 @@ const Navbar = () => {
                     d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                   />
                 </svg>
-                {cartCount > 0 && <span className="badge badge-sm indicator-item text-red-500 font-bold">
-                  {cartCount}
-                </span>}
+                {cartCount > 0 && (
+                  <span className="badge badge-sm indicator-item text-red-500 font-bold">
+                    {cartCount}
+                  </span>
+                )}
               </div>
             </Link>
           </div>
@@ -96,7 +136,10 @@ const Navbar = () => {
             <div className="w-10 rounded-full">
               <img
                 alt="Tailwind CSS Navbar component"
-                src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                src={
+                  user?.photoURL ||
+                  `https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg`
+                }
               />
             </div>
           </div>
@@ -106,7 +149,7 @@ const Navbar = () => {
           >
             <li>
               <a className="justify-between">
-                Profile
+                {`${user?.displayName || `User`}`}
                 <span className="badge">New</span>
               </a>
             </li>
@@ -114,7 +157,11 @@ const Navbar = () => {
               <a>Settings</a>
             </li>
             <li>
-              <a>Logout</a>
+              {!user ? (
+                <button onClick={signInGoogle}>Log in with google</button>
+              ) : (
+                <button onClick={logOut}>Logout</button>
+              )}
             </li>
           </ul>
         </div>
