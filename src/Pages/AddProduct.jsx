@@ -27,7 +27,7 @@ const AddProduct = () => {
       rating
     }
 
-    axios.post(`http://localhost:5000/addProduct`, product)
+    axios.post(`https://clothing-store-server-pink.vercel.app/addProduct`, product)
     .then(res => {
       console.log(res.data)
       if (res.data.insertedId) {

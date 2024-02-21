@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Product = ({ product }) => {
   const handleAddToCart = async () => {
-    const res = await axios.post(`http://localhost:5000/addToCart`, product);
+    const res = await axios.post(`https://clothing-store-server-pink.vercel.app/addToCart`, product);
     if (res.data.acknowledged) {
       alert("cart added successfully");
     }

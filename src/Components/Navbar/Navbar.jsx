@@ -17,7 +17,7 @@ const Navbar = () => {
 
   //current user state
   useEffect(() => {
-    axios.get("http://localhost:5000/mycart").then((res) => {
+    axios.get("https://clothing-store-server-pink.vercel.app/mycart").then((res) => {
       setCartCount(res.data.length);
     });
   }, []);

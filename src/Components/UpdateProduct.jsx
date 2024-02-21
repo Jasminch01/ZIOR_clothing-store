@@ -28,7 +28,7 @@ const UpdateProduct = () => {
       rating,
     };
 
-    axios.put(`http://localhost:5000/updateProduct/${productUpdate._id}`, product).then((res) => {
+    axios.put(`https://clothing-store-server-pink.vercel.app/updateProduct/${productUpdate._id}`, product).then((res) => {
       console.log(res.data);
       if (res.data.modifiedCount > 0) {
         navigate(location?.state ? location.state : "/");
